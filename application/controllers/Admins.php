@@ -5,7 +5,7 @@ class Admins extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin-home');
+		$this->load->view('home');
 		$this->load->view('admin-partials/admin-login-partial');
 
 	}
@@ -28,30 +28,40 @@ class Admins extends CI_Controller {
 	}
 	public function dashboard()
 	{
+		$orders = $this->admin->all_orders();
+		$products = $this->customer->all_products();
+
 		$this->load->view('admin-home');
-		$this->load->view('admin-partials/admin-dashboard-partial');
+		$this->load->view('admin-partials/admin-dashboard-partial', array('products' => $products, 'orders' => $orders));
+
 	}
 	public function all_orders()
 	{
+		$orders = $this->admin->all_orders();
+
 		$this->load->view('admin-home');
-		$this->load->view('admin-partials/admin-all-orders-partial');
+		$this->load->view('admin-partials/admin-all-orders-partial', array('orders' => $orders));
 	}
-	public function view_one_order()
+	public function view_one_order($id)
 	{
+		$get_order = $this->admin->get_order($id);
+
 		$this->load->view('admin-home');
-		$this->load->view('admin-partials/admin-order-partial');
+		$this->load->view('admin-partials/admin-order-partial', array('order' => $get_order));
 	}	
 
 
 	public function all_products()
 	{
+		$products = $this->customer->all_products();
 		$this->load->view('admin-home');
-		$this->load->view('admin-partials/admin-all-products-partial');
+		$this->load->view('admin-partials/admin-all-products-partial', array('products' => $products));
 	}	
-	public function view_one_product()
+	public function view_one_product($id)
 	{
+		$product = $this->customer->get_product($id);
 		$this->load->view('admin-home');
-		$this->load->view('admin-partials/admin-product-partial');
+		$this->load->view('admin-partials/admin-product-partial', array('product' => $product));
 	}	
 	public function go_add_product()
 	{
@@ -73,6 +83,26 @@ class Admins extends CI_Controller {
 			redirect("/Admins/go_add_product");
 		}
 	}	
+
+	public function edit_product($id)
+	{
+		$edit = $this->admin->edit_product($this->input->post());
+	
+		$product = $this->customer->get_product($id);
+
+		$this->session->set_flashdata('message', 'Product successfully edited!', $product);
+		redirect("/Admins/view_one_product/" . $id);
+
+
+	}
+
+	public function remove_product($id)
+	{
+		$remove - $this->admin->delete_product($id);
+		redirect("/Admins/all_products");
+	}
+
+	//get database error when trying to remove product
 	public function logout()
 	{
 		$this->session->unset_userdata('id');

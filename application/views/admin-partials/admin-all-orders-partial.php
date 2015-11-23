@@ -8,20 +8,15 @@
 		<th>Date Created</th>
 		<th>Status</th>
 	</tr>
-	
+
+	<?php for($i=0; $i<count($orders); $i++) { ?>
 	<tr>
-		<td><a href="/Admins/view_one_order">1</a></td>
-		<td>Some Lady</td>
-		<td>11/8/2015</td>
+		<td><a href="/Admins/view_one_order/<?= $orders[$i]['order_id']; ?>"><?= $orders[$i]['order_id']; ?></a></td>
+		<td><?= $orders[$i]['billing_first'] . " " . $orders[$i]['billing_last'];  ?> </td>
+		<td><?= $orders[$i]['created_at']; ?></td>
 		<td>In Process</td>
 	</tr>	
-	<tr>
-		<td><a href="#">2</a></td>
-		<td>Some Lady</td>
-		<td>11/8/2015</td>
-		<td>In Process</td>
-	</tr>
-</table>
-</div>
+<?php } ?>
+</table></div>
 
 

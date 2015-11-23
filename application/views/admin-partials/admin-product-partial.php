@@ -1,40 +1,40 @@
 <div class="row">
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
-      <img src="<?php echo base_url("assets/img/coasterthumb.jpeg"); ?>" alt="coaster">
+    <?php $image = $product['img']; ?>
+      <img src="<?php echo base_url($image); ?>" alt="image">
     </div>
  </div>  
 </div>	
 
 <div id="product_info">
-	<h3>Coaster</h3>
-	<p>This is a great item.</p>
-	<ul>
-		<li>Made of ceramic.</li>
-		<li>Easy to clean</li>
-		<li>Pretty</li>
-
-	</ul>
-		
+	<h3><?= $product['name']; ?></h3>
+	<p><?= $product['description']; ?></p>
+	<p>$<?= $product['price']; ?></p>	
 </div>	
 <div id="edit_product">
 	<h3>Edit Product</h3>
-	<form>
+	<form action="/Admins/edit_product/<?= $product['id']; ?>" method="post">
 	    <label for="productName">Product Name</label>
-	    <input type="text" class="form-control" id="productName">    	
+	    <input type="text" class="form-control" id="productName" name="name">    	
 	    <label for="productDesc">Description</label>
-	    <input type="text" class="form-control" id="productDesc">   
+	    <input type="text" class="form-control" id="productDesc" name="description">   
 	    <label for="productPrice">Price</label>
-	    <input type="text" class="form-control" id="productPrice">   
+	    <input type="text" class="form-control" id="productPrice" name="price">   
 		<label for="productCategory">Category</label>
 			<select name="category">
 				<option value="books">Books & Stationary</option>
 				<option value="decor">Decor</option>
 			</select>
-
+		<label for="productImg">Image (link)</label>
+	    <input type="text" class="form-control" id="productImg" name="img">	
+	    <input type="hidden" value="<?= $product['id']; ?>" name="id">
 	  	<p><button type="submit" class="btn btn-default">Edit Product</button></p>
 	</form>
-</div><a class="btn btn-default" href="#" role="button">Remove Product</a>
+<?= $this->session->flashdata('message'); ?>	
+</div><a class="btn btn-default" href="/Admins/remove_product/<?= $product['id']; ?>" role="button">Remove Product</a>
+</div><a class="btn btn-default" href="/Admins/all_products" role="button">View all Products</a>
+
 
 
 		

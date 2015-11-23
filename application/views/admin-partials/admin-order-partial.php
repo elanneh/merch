@@ -1,5 +1,5 @@
 <div id="cust_order">
-<h2>Order #</h2>
+<h2>Order #<?= $order[0]['order_id']; ?></h2>
 <table class="table table-striped">
 	<tr>
 		<th>Product ID</th>
@@ -7,50 +7,27 @@
 		<th>Price</th>
 		<th>Qty</th>
 		<th>Total</th>
-		<th>Status</th>
 	</tr>
-	
+
+<?php for($i=0; $i<count($order); $i++) { 
+	$image = $order[$i]['img'];
+	?>
 	<tr>
-		<td>1</td>
-		<td><img src="<?php echo base_url("assets/img/coasterthumb.jpeg"); ?>" alt class="thumb"><p>Coaster</p></td>
-		<td>$10.00</td>
-		<td>1</td>
-		<td>$10.00</td>
-		<td>
-			<form>
-				<select name="rating">
-					<option value="in_process">In Process</option>
-					<option value="shipped">Shipped</option>
-					<option value="cancelled">Cancelled</option>
-				</select>	
-			<br><button type="submit" class="btn btn-default">Change</button>
-			</form>
-		</td>
+		<td><?= $order[$i]['product_id']; ?></td>
+		<td><img src="<?php echo base_url($image); ?>" alt class="thumb"><p><?= $order[$i]['name']; ?></p></td>
+		<td>$<?= $order[$i]['price']; ?></td>
+		<td><?= $order[$i]['qty']; ?></td>
+		<td>$<?= $order[$i]['price'] * $order[$i]['qty']; ?>.00</td>
 	</tr>	
-	<tr>
-		<td>2</td>
-		<td><img src="<?php echo base_url("assets/img/coasterthumb.jpeg"); ?>" alt class="thumb"><p>Coaster</p></td>
-		<td>$10.00</td>
-		<td>1</td>
-		<td>$10.00</td>
-		<td>
-			<form>
-				<select name="rating">
-					<option value="in_process">In Process</option>
-					<option value="shipped">Shipped</option>
-					<option value="cancelled">Cancelled</option>
-				</select>	
-			<br><button type="submit" class="btn btn-default">Change</button>
-			</form>
-		</td>
-	</tr>
+<?php } ?>	
+	
 	<tfoot>
 	<tr>
 		<td></td>	
 		<td></td>
 		<td></td>		
 		<td><b>Grand Total</b></td>
-		<td><b>$20.00</b></td>
+		<td><b></b></td>
 		<td></td>
 	</tr>	
 	</tfoot>	
@@ -58,16 +35,19 @@
 </table>
 </div>
 <h4>Bill To</h4>
-<p>Customer Name</p>
-<p>Address</p>
-<p>Email Address</p>
+<p><?= $order[0]['billing_first'] . " " . $order[0]['billing_last']; ?></p>
+<p><?= $order[0]['billing_address']; ?></p>
+<p><?= $order[0]['billing_city'] . ", " . $order[0]['billing_state'] . "  " . $order[0]['billing_zip']; ?></p>
+<p><?= $order[0]['email']; ?></p>
 
 <h4>Ship To</h4>
-<p>Customer Name</p>
-<p>Address</p>
+<p><?= $order[0]['shipping_first'] . " " . $order[0]['shipping_last']; ?></p>
+<p><?= $order[0]['shipping_address']; ?></p>
+<p><?= $order[0]['shipping_city'] . ", " . $order[0]['shipping_state'] . "  " . $order[0]['shipping_zip']; ?></p>
 
 
 <h4>Credit Card</h4>
-<p>Card Info</p>
-<p>Address</p>
+<p><?= $order[0]['cc_number']; ?></p>
+<p><?= $order[0]['exp'] . "  " . $order[0]['cvc']; ?></p> 
+
 

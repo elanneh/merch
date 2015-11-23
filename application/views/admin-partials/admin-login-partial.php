@@ -8,6 +8,5 @@
 	  	<p><input type="submit" value="Log In"></p>
 	</form>
 </div>
-<a href="/Admins/dashboard">Dashboard</a>
 
 <?= $this->session->flashdata('message'); ?>

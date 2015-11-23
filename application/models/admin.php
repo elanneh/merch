@@ -39,10 +39,72 @@ class admin extends CI_Model {
         }
     }
 
-
-    function get_order($order)
+    function edit_product($id)
     {
-        $query = "SELECT orders_has_products.id, orders_has_products.qty, products.name, products.price, customers.billing_first, customers.billing_last 
+        $product = $this->input->post();
+  
+        if($product['name'])
+        {
+            $query = "UPDATE products SET name=? WHERE id=?";
+            $values = array($product['name'], $product['id']);
+            $this->db->query($query, $values);
+        }
+        elseif($product['description'])
+        {
+            $query2 = "UPDATE products SET description=? WHERE id=?";
+            $values2 = array($product['description'], $product['id']);
+            $this->db->query($query2, $values2);
+        }
+        elseif($product['price'])
+        {
+
+            $query3 = "UPDATE products SET price=? WHERE id=?";
+            $values3 = array($product['price'], $product['id']);
+            $this->db->query($query3, $values3);
+        }
+        elseif($product['category'])
+        {
+            $query4 = "UPDATE products SET category=? WHERE id=?";
+            $values4 = array($product['category'], $product['id']);
+            $this->db->query($query4, $values4); 
+        }       
+        elseif($product['img'])
+        {
+            $query5 = "UPDATE products SET img=? WHERE id=?";
+            $values5 = array($product['img'], $product['id']);
+            $this->db->query($query5, $values5);
+        } 
+        else
+        {
+            $this->session->set_flashdata('message', "Uh-Oh. Something went wrong");
+        } 
+    }
+
+    function delete_product($id)
+    {
+        $query = "DELETE FROM products WHERE id = ?";
+        $values = $id;
+        return $this->db->query($query, $values);
+    }
+
+    function all_orders()
+    {
+        $query = "SELECT DISTINCT orders_has_products.order_id, orders.created_at, customers.billing_first, customers.billing_last 
+            FROM products 
+            JOIN orders_has_products 
+            ON products.id = orders_has_products.product_id 
+            JOIN orders 
+            ON orders_has_products.order_id = orders.id 
+            JOIN customers 
+            ON orders.customer_id = customers.id";
+
+        return $this->db->query($query)->result_array();  
+
+    }
+
+    function get_order($id)
+    {
+        $query = "SELECT orders_has_products.order_id, orders_has_products.product_id, orders_has_products.qty, products.name, products.price,  products.img, customers.billing_first, customers.billing_last, customers.billing_address, customers.billing_city, customers.billing_state, customers.billing_zip, customers.shipping_first, customers.shipping_last, customers.shipping_address, customers.shipping_city, customers.shipping_state, customers.shipping_zip, customers.email, customers.cc_number, customers.exp, customers.cvc 
             FROM products 
             JOIN orders_has_products 
             ON products.id = orders_has_products.product_id 
@@ -50,10 +112,12 @@ class admin extends CI_Model {
             ON orders_has_products.order_id = orders.id 
             JOIN customers 
             ON orders.customer_id = customers.id WHERE orders_has_products.order_id = ?";
-        $values = array($order);
+        $values = array($id);
         
-        return $this->db->query($query, $values);    
+        return $this->db->query($query, $values)->result_array();   
 
     }
+
+
 
 }
