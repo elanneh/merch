@@ -15,6 +15,7 @@
 <div id="product_info">
 	<h3><?= $product['name']; ?></h3>
 	<p><?= $product['description']; ?></p>
+	<p><?= $product['prod_status']; ?></p>
 	<p>$<?= $product['price']; ?></p>
 
 		<form action="/Main/add_cart" method="post">

@@ -14,7 +14,18 @@
 		<td><a href="/Admins/view_one_order/<?= $orders[$i]['order_id']; ?>"><?= $orders[$i]['order_id']; ?></a></td>
 		<td><?= $orders[$i]['billing_first'] . " " . $orders[$i]['billing_last'];  ?> </td>
 		<td><?= $orders[$i]['created_at']; ?></td>
-		<td>In Process</td>
+		<td><?= $orders[$i]['status']; ?>
+			<form action="/Admins/edit_status/<?= $orders[$i]['order_id']; ?>" method="post">
+				<select name="status">
+					<option selected="selected" disabled="disabled">Change Status</option>
+					<option value="In Process">In Process</option>
+					<option value="Shipped">Shipped</option>
+					<option value="On Hold">On Hold</option>					
+					<option value="Cancelled">Cancelled</option>
+				</select>	
+				<p><button type="submit" class="btn btn-default">Edit Status</button></p>
+			</form>		
+		</td>
 	</tr>	
 <?php } ?>
 </table></div>

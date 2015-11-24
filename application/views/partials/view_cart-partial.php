@@ -19,7 +19,6 @@
 	<?php foreach($this->cart->contents() as $product) { ?>
 	<tr>
 		<td><?= $product['id'] ?></td>
-
 		<td><?= $product['name'] ?></td>
 		<td><?= $product['qty'] ?>
 			<form action="/Main/update_product" method="post">

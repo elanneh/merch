@@ -2,7 +2,6 @@
 
 class Admins extends CI_Controller {
 
-
 	public function index()
 	{
 		$this->load->view('home');
@@ -50,6 +49,22 @@ class Admins extends CI_Controller {
 		$this->load->view('admin-partials/admin-order-partial', array('order' => $get_order));
 	}	
 
+	public function edit_status($id)
+	{
+		$status = $this->admin->edit_status($id);	
+		$orders = $this->admin->all_orders();
+
+		$this->load->view('admin-home');
+		$this->load->view('admin-partials/admin-all-orders-partial', array('orders' => $orders));
+	}
+	public function edit_status_one($id)
+	{
+		$status = $this->admin->edit_status($id);	
+		$get_order = $this->admin->get_order($id);
+
+		$this->load->view('admin-home');
+		$this->load->view('admin-partials/admin-order-partial', array('order' => $get_order));
+	}
 
 	public function all_products()
 	{
@@ -96,13 +111,6 @@ class Admins extends CI_Controller {
 
 	}
 
-	public function remove_product($id)
-	{
-		$remove - $this->admin->delete_product($id);
-		redirect("/Admins/all_products");
-	}
-
-	//get database error when trying to remove product
 	public function logout()
 	{
 		$this->session->unset_userdata('id');

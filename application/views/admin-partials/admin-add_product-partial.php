@@ -14,7 +14,13 @@
 				<option value="books">Books & Stationary</option>
 				<option value="decor">Decor</option>
 			</select>
-			<label for="productImg">Image (link)</label>
+		<label for="productStatus">Item Status</label>
+			<select name="prod_status">
+				<option value="In Stock">In Stock</option>
+				<option value="Out of Stock">Out of Stock</option>
+				<option value="Discontinued">Discontinued</option>
+			</select>	
+		<label for="productImg">Image (link)</label>
 	    <input type="text" class="form-control" id="productImg" name="img">   
 	  	<p><input type="submit" value="Add Product"></p>
 	</form>

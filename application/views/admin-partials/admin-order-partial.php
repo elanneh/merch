@@ -31,8 +31,21 @@
 		<td></td>
 	</tr>	
 	</tfoot>	
-
 </table>
+
+<h3>Status:</h3>
+<p><?= $order[0]['status']; ?></p>
+	<form action="/Admins/edit_status_one/<?= $order[0]['order_id']; ?>" method="post">
+		<select name="status">
+			<option selected="selected" disabled="disabled">Change Status</option>
+			<option value="In Process">In Process</option>
+			<option value="Shipped">Shipped</option>
+			<option value="On Hold">On Hold</option>					
+			<option value="Cancelled">Cancelled</option>
+		</select>	
+		<p><button type="submit" class="btn btn-default">Edit Status</button></p>
+	</form>		
+
 </div>
 <h4>Bill To</h4>
 <p><?= $order[0]['billing_first'] . " " . $order[0]['billing_last']; ?></p>

@@ -14,7 +14,7 @@
 		<td><a href="/Admins/view_one_order/<?= $orders[$i]['order_id']; ?>"><?= $orders[$i]['order_id']; ?></a></td>
 		<td><?= $orders[$i]['billing_first'] . " " . $orders[$i]['billing_last'];  ?> </td>
 		<td><?= $orders[$i]['created_at']; ?></td>
-		<td>In Process</td>
+		<td><?= $orders[$i]['status']; ?></td>
 	</tr>	
 <?php } ?>
 </table>

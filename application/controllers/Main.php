@@ -119,17 +119,44 @@ class Main extends CI_Controller {
 
 	public function add_order()
 	{
-		$new_order = $this->customer->new_order($this->input->post());
 
-		if($new_order == true)
-		{
-			redirect("/Main/confirm");
-		}
-		else
-		{
-			$this->session->set_flashdata('message', 'Uh-oh. Please try again.');
-			redirect("/Main/view_cart");
-		}
+		$this->form_validation->set_rules("billing_first", "Billing First Name", "required|alpha");
+        $this->form_validation->set_rules("billing_last", "Billing Last Name", "required|alpha");
+        $this->form_validation->set_rules("email", "Email", "required|valid_email");
+        $this->form_validation->set_rules("billing_address", "Billing Address", "required");
+        $this->form_validation->set_rules("billing_city", "Billing City", "required");
+        $this->form_validation->set_rules("billing_state", "Billing State", "required|alpha");
+        $this->form_validation->set_rules("billing_zip", "Billing Zip", "required");
+        $this->form_validation->set_rules("shipping_first", "Shipping First Name", "required|alpha");
+        $this->form_validation->set_rules("shipping_last", "Shipping Last Name", "required|alpha");
+        $this->form_validation->set_rules("shipping_address", "Shipping Address", "required");
+        $this->form_validation->set_rules("shipping_city", "Shipping City", "required");
+        $this->form_validation->set_rules("shipping_state", "Shipping State", "required");
+        $this->form_validation->set_rules("shipping_zip", "Shipping Zip", "required");
+        $this->form_validation->set_rules("cardholder_name", "Cardholder Name", "required");
+        $this->form_validation->set_rules("cc_number", "Credit Card Number", "required|numeric");
+        $this->form_validation->set_rules("exp", "Credit Card Exp", "required|numeric");
+        $this->form_validation->set_rules("cvc", "Security Code", "required|numeric");        
+
+        if($this->form_validation->run() === FALSE)
+        {
+
+            $this->session->set_flashdata('message', validation_errors());
+            redirect("/Main/checkout");
+        }
+        else
+
+			$new_order = $this->customer->new_order($this->input->post());
+
+			if($new_order == true)
+			{
+				redirect("/Main/confirm");
+			}
+			else
+			{
+				$this->session->set_flashdata('message', 'Uh-oh. Please try again.');
+				redirect("/Main/view_cart");
+			}
 
 	}
 

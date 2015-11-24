@@ -8,7 +8,7 @@
 	<link href="<?php echo base_url('./assets/bootstrap/css/style.css'); ?>" rel="stylesheet">
 	<script src="<?php echo base_url('./assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
 </head>
-</head>
+
 <body>
 
 	<div id="header">

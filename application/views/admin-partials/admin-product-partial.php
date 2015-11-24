@@ -10,6 +10,7 @@
 <div id="product_info">
 	<h3><?= $product['name']; ?></h3>
 	<p><?= $product['description']; ?></p>
+	<p><?= $product['prod_status']; ?></p>	
 	<p>$<?= $product['price']; ?></p>	
 </div>	
 <div id="edit_product">
@@ -26,13 +27,18 @@
 				<option value="books">Books & Stationary</option>
 				<option value="decor">Decor</option>
 			</select>
+		<label for="productStatus">Item Status</label>
+			<select name="prod_status">
+				<option value="In Stock">In Stock</option>
+				<option value="Out of Stock">Out of Stock</option>
+				<option value="Discontinued">Discontinued</option>
+			</select>		
 		<label for="productImg">Image (link)</label>
 	    <input type="text" class="form-control" id="productImg" name="img">	
 	    <input type="hidden" value="<?= $product['id']; ?>" name="id">
 	  	<p><button type="submit" class="btn btn-default">Edit Product</button></p>
 	</form>
 <?= $this->session->flashdata('message'); ?>	
-</div><a class="btn btn-default" href="/Admins/remove_product/<?= $product['id']; ?>" role="button">Remove Product</a>
 </div><a class="btn btn-default" href="/Admins/all_products" role="button">View all Products</a>
 
 

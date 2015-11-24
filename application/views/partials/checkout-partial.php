@@ -24,9 +24,9 @@
 	<h3>Credit Card</h3>
 	
 		<p><input type="text" name="cc_number" placeholder="Credit Card Number"></p>
-		<p><input type="text" placeholder="Cardholder Name"></p>
+		<p><input type="text" name="cardholder_name" placeholder="Cardholder Name"></p>
 		<p><input type="text" name="exp" placeholder="Exp MMYYYY"> <input type="text" name="cvc" placeholder="CVC"> </p>
-
+	
 	<input type="submit" value="Pay now">
 	</form>
 </div>	
@@ -35,7 +35,6 @@
 <div id="summary">
 	<table>
 	<tr>
-		<th>ID</th>
 		<th>Product</th>
 		<th>Qty</th>
 		<th>Total</th>
@@ -43,7 +42,7 @@
 
 	<?php foreach($this->cart->contents() as $product) { ?>
 	<tr>
-		<td><?= $product['id'] ?></td>
+
 		<td><?= $product['name'] ?></td>
 		<td><?= $product['qty'] ?></td>
 		<td>$<?= $product['subtotal'] ?>.00</td>
@@ -59,6 +58,9 @@
 	</tfoot>
 	</table>	
 </div>	
+
+<p><?= $this->session->flashdata('message'); ?></p>
+
 
 
 <div id="checkout">
