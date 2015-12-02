@@ -15,7 +15,7 @@
 
 	<div id="header">
 		<h1>MERCH</h1>
-			<p id="cart"><a href="/Admins/index">Admin</a><a href="/Admins/logout">Log Out</a><a href="/Main/view_cart">Shopping Cart</a></p>
+			<p id="cart"><a href="/Admins/index">Sign In</a><a href="/Main/view_cart">Shopping Cart</a></p>
 			<form class="form-inline">
 			  <div class="form-group">		    
 			    <input type="text" class="form-control" id="search" placeholder="Search">
@@ -32,6 +32,9 @@
 		  <li role="presentation"><a href="/Admins/all_products">View Products</a></li>
 		</ul>
 	</div>
+	
+	<a class="btn btn-default" href="/Admins/logout" role="button">Log Out</a>
+
 
 </body>
 </html>

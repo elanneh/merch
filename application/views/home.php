@@ -25,7 +25,7 @@
 
 	<div id="header">
 		<h1>MERCH</h1>
-			<p id="cart"><a href="/Admins/index">Admin</a><a href="/Admins/logout">Log Out</a><a href="/Main/view_cart">Shopping Cart</a></p>
+			<p id="cart"><a href="/Admins/index">Sign In</a><a href="/Main/view_cart">Shopping Cart</a></p>
 			<form class="form-inline" action="/Main/search" method="post" id="SearchForm">
 			  <div class="form-group">		    
 			    <input type="text" class="form-control" name="search_term" placeholder="Search">
