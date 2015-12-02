@@ -4,31 +4,47 @@ class customer extends CI_Model {
 
     function all_products()
     {
-        $query = "SELECT * from products";
+        $query = "SELECT * FROM products";
         return $this->db->query($query)->result_array();
+    }
+
+    function search($str)
+    {
+
+        $this->form_validation->set_rules("search_term", "Search Term", "required");
+
+        if($this->form_validation->run() === FALSE)
+        {
+            $this->session->set_flashdata('message', validation_errors());
+        }
+        else
+        {
+        $query = "SELECT * FROM products WHERE name LIKE '%{$str}%'";
+        return $this->db->query($query)->result_array();
+        }
     }
 
     public function get_books()
 	{
-        $query = "SELECT * from products WHERE category='books'";
+        $query = "SELECT * FROM products WHERE category='books'";
         return $this->db->query($query)->result_array();
 	}
 
 	public function get_decor()
 	{
-        $query = "SELECT * from products WHERE category='decor'";
+        $query = "SELECT * FROM products WHERE category='decor'";
         return $this->db->query($query)->result_array();
 	}
 
 	public function get_new()
 	{
-        $query = "SELECT * from products ORDER BY created_at DESC";
+        $query = "SELECT * FROM products ORDER BY created_at DESC";
         return $this->db->query($query)->result_array();
 	}
 
     public function get_product($id)
     {
-        $query = "SELECT * from products WHERE id = ?";
+        $query = "SELECT * FROM products WHERE id = ?";
         $values = array($id);
         return $this->db->query($query, $values)->row_array();
     }

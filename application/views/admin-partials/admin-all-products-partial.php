@@ -1,5 +1,7 @@
-<h1>Products</h1>
-<a class="btn btn-default" href="/Admins/go_add_product" role="button">Add Product</a>
+<div id="heading">
+  <h2 class>Products</h2>
+  <a class="btn btn-default" href="/Admins/go_add_product" role="button">Add Product</a>
+</div>
 <div class="row">
   <div class="col-sm-6 col-md-4">
   <?php foreach($products as $product) { 

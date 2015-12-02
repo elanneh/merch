@@ -10,6 +10,19 @@ class Main extends CI_Controller {
 		$this->load->view('partials/home-partial', array('products' => $all_products));
 	}
 
+	public function search()
+	{
+		$entry = $this->input->post('search_term');
+
+        $results = $this->customer->search($entry);
+        $this->load->view('home', array('results' => $results));
+		$all_products = $this->customer->all_products();
+		$this->load->view('partials/home-partial', array('products' => $all_products));
+	
+
+         json_encode($results);
+	}
+
 	public function get_all_products()
 	{
 		$this->load->view('home');
@@ -62,7 +75,6 @@ class Main extends CI_Controller {
 			);
 
 		$cart = $this->cart->insert($data);
-		// var_dump($this->cart->contents());
 	
 		if(isset($cart)){
 

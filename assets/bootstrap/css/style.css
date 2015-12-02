@@ -65,7 +65,7 @@
 	width: 700px;
 	display: inline-block;
 }
-#confirm, #login, #all_prods, #add_product{
+#confirm, #login, #all_prods, #add_product, #heading{
 	text-align: center;
 }
 .thumbnail img{
