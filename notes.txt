@@ -1,0 +1,8 @@
+select orders_has_products.id, orders_has_products.qty, products.name, products.price, customers.billing_first, customers.billing_last 
+from products 
+join orders_has_products 
+on products.id = orders_has_products.product_id 
+join orders 
+on orders_has_products.order_id = orders.id 
+join customers 
+on orders.customer_id = customers.id where orders_has_products.order_id = 4
