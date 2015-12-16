@@ -44,9 +44,10 @@ class Admins extends CI_Controller {
 	public function view_one_order($id)
 	{
 		$get_order = $this->admin->get_order($id);
-
+		$get_sum = $this->admin->sum($id);
+	
 		$this->load->view('admin-home');
-		$this->load->view('admin-partials/admin-order-partial', array('order' => $get_order));
+		$this->load->view('admin-partials/admin-order-partial', array('order' => $get_order, 'sum' => $get_sum));
 	}	
 
 	public function edit_status($id)

@@ -27,7 +27,7 @@
 		<td></td>
 		<td></td>		
 		<td><b>Grand Total</b></td>
-		<td><b></b></td>
+		<td><b>$<?= $sum[0]['SUM(orders_has_products.qty*products.price)']; ?></b></td>
 		<td></td>
 	</tr>	
 	</tfoot>	

@@ -118,6 +118,23 @@ class admin extends CI_Model {
 
     }
 
+
+    function sum($id)
+    {
+        $query = "SELECT SUM(orders_has_products.qty*products.price)
+            FROM products 
+            JOIN orders_has_products 
+            ON products.id = orders_has_products.product_id 
+            JOIN orders 
+            ON orders_has_products.order_id = orders.id 
+            JOIN customers 
+            ON orders.customer_id = customers.id WHERE orders_has_products.order_id = ?";
+        $values = array($id);
+        
+        return $this->db->query($query, $values)->result_array();   
+
+    }
+
     function edit_status($id)
     {
         $order = $this->input->post();
