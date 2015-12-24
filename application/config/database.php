@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = 'root';
-$db['default']['database'] = 'merch';
+$db['default']['hostname'] = 'us-iron-auto-dca-03-a.cleardb.net';
+$db['default']['username'] = 'b1feecc7ef24dd';
+$db['default']['password'] = '3cbe8e02';
+$db['default']['database'] = 'heroku_1c585a45df2a448';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
