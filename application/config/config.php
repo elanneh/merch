@@ -16,7 +16,7 @@
 | environments.
 |
 */
-$config['base_url'] = '';
+$config['base_url'] = 'https://blooming-oasis-3883.herokuapp.com/';
 
 /*
 |--------------------------------------------------------------------------

@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'us-iron-auto-dca-03-a.cleardb.net';
-$db['default']['username'] = 'bac39a6d9f27df';
-$db['default']['password'] = 'df7e0420';
-$db['default']['database'] = 'heroku_0540de95a7e98b5';
+$db['default']['username'] = 'b5e87267021e6e';
+$db['default']['password'] = 'cd51094d';
+$db['default']['database'] = 'heroku_fb17511c708b1cd';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
